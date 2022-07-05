@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+
+  middleware:
+    image: ${MONGO_CMD_IMAGE}
+    container_name: ${MONGO_CMD_CONTAINER}
+    command: mongocmd
+    ports:
+      - 4040:4040
+    networks:
+      - local
+
+  db:
+    image: mongo:4.2.5
+    container_name: db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    ports:
+      - 27017:27017
+    networks: 
+      - local
+    
+networks:
+  local:
+    name: $NETWORK

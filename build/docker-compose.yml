@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+
+  mongocmd:
+    build:
+      context: ../
+      dockerfile: ./build/simple.dockerfile
+      args:
+        GO_VER: 1.18.3
+        OS_VER: ubuntu:22.04
+    image: ${MONGO_CMD_IMAGE:-go-db/mongocmd:current}
